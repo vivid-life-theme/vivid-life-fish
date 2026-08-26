@@ -1,0 +1,41 @@
+# name: 'Vivid Life · Twilight · Purple'
+# preferred_background: 404040
+
+fish_color_normal f5f5f5
+fish_color_command d8b4fe
+fish_color_keyword d8b4fe
+fish_color_quote 84cc16
+fish_color_redirection d4d4d4
+fish_color_end d4d4d4
+fish_color_error fee2e2
+fish_color_param f97316
+fish_color_option bef264
+fish_color_comment a3a3a3
+fish_color_operator d8b4fe
+fish_color_escape fdba74
+fish_color_autosuggestion a3a3a3
+fish_color_cwd d8b4fe
+fish_color_cwd_root fee2e2
+fish_color_user 93c5fd
+fish_color_host d4d4d4
+fish_color_host_remote fef9c3
+fish_color_status fee2e2
+fish_color_cancel fee2e2 --reverse
+fish_color_search_match --background=5b5b5b
+fish_color_selection --background=5b5b5b
+fish_color_match --background=dbeafe
+fish_color_history_current --bold
+fish_color_valid_path --underline
+fish_pager_color_prefix d8b4fe
+fish_pager_color_completion f5f5f5
+fish_pager_color_description a3a3a3
+fish_pager_color_progress a3a3a3
+fish_pager_color_background
+fish_pager_color_selected_background --background=5b5b5b
+fish_pager_color_selected_completion f5f5f5
+fish_pager_color_selected_description a3a3a3
+fish_pager_color_selected_prefix d8b4fe
+fish_pager_color_secondary_background
+fish_pager_color_secondary_completion
+fish_pager_color_secondary_description
+fish_pager_color_secondary_prefix

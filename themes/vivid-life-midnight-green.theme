@@ -1,0 +1,41 @@
+# name: 'Vivid Life · Midnight · Green'
+# preferred_background: 171717
+
+fish_color_normal f5f5f5
+fish_color_command 84cc16
+fish_color_keyword d8b4fe
+fish_color_quote 84cc16
+fish_color_redirection d4d4d4
+fish_color_end d4d4d4
+fish_color_error fca5a5
+fish_color_param fdba74
+fish_color_option bef264
+fish_color_comment 737373
+fish_color_operator d8b4fe
+fish_color_escape f97316
+fish_color_autosuggestion 737373
+fish_color_cwd 84cc16
+fish_color_cwd_root fca5a5
+fish_color_user 93c5fd
+fish_color_host d4d4d4
+fish_color_host_remote fde047
+fish_color_status fca5a5
+fish_color_cancel fca5a5 --reverse
+fish_color_search_match --background=2a2f3a
+fish_color_selection --background=2a2f3a
+fish_color_match --background=93c5fd
+fish_color_history_current --bold
+fish_color_valid_path --underline
+fish_pager_color_prefix 84cc16
+fish_pager_color_completion f5f5f5
+fish_pager_color_description 737373
+fish_pager_color_progress 737373
+fish_pager_color_background
+fish_pager_color_selected_background --background=2a2f3a
+fish_pager_color_selected_completion f5f5f5
+fish_pager_color_selected_description 737373
+fish_pager_color_selected_prefix 84cc16
+fish_pager_color_secondary_background
+fish_pager_color_secondary_completion
+fish_pager_color_secondary_description
+fish_pager_color_secondary_prefix

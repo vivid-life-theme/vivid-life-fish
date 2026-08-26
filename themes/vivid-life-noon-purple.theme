@@ -1,0 +1,41 @@
+# name: 'Vivid Life · Noon · Purple'
+# preferred_background: f5f5f5
+
+fish_color_normal 171717
+fish_color_command 7e22ce
+fish_color_keyword 7e22ce
+fish_color_quote 365314
+fish_color_redirection 404040
+fish_color_end 404040
+fish_color_error 7f1d1d
+fish_color_param 7c2d12
+fish_color_option 4d7c0f
+fish_color_comment 525252
+fish_color_operator 7e22ce
+fish_color_escape c2410c
+fish_color_autosuggestion 525252
+fish_color_cwd 7e22ce
+fish_color_cwd_root 7f1d1d
+fish_color_user 1d4ed8
+fish_color_host 404040
+fish_color_host_remote 713f12
+fish_color_status 7f1d1d
+fish_color_cancel 7f1d1d --reverse
+fish_color_search_match --background=e5e5e5
+fish_color_selection --background=e5e5e5
+fish_color_match --background=1e3a8a
+fish_color_history_current --bold
+fish_color_valid_path --underline
+fish_pager_color_prefix 7e22ce
+fish_pager_color_completion 171717
+fish_pager_color_description 525252
+fish_pager_color_progress 525252
+fish_pager_color_background
+fish_pager_color_selected_background --background=e5e5e5
+fish_pager_color_selected_completion 171717
+fish_pager_color_selected_description 525252
+fish_pager_color_selected_prefix 7e22ce
+fish_pager_color_secondary_background
+fish_pager_color_secondary_completion
+fish_pager_color_secondary_description
+fish_pager_color_secondary_prefix
