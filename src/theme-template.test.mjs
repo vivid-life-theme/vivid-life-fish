@@ -1,6 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import tokens from "@vivid-life-theme/design-system";
+import { selectedWash } from "@vivid-life-theme/design-system/tools/build-tokens";
 import { buildTheme } from "./theme-template.mjs";
 
 const FLAVORS = ["midnight", "twilight", "dawn", "noon"];
@@ -70,9 +71,16 @@ test("background-only vars use --background= with no bare color", () => {
   const selection = tokens.flavors.noon.state.selection.slice(1);
   assert.equal(vars.fish_color_selection, `--background=${selection}`);
   assert.equal(vars.fish_color_search_match, `--background=${selection}`);
+
+  const accent = tokens.palette.green[tokens.accent_shade.noon.green];
+  const wash = selectedWash({
+    surface: tokens.flavors.noon.surface.bg,
+    accent,
+    mixPct: tokens.accent_mix.selected.pct / 100,
+  }).slice(1);
   assert.equal(
     vars.fish_pager_color_selected_background,
-    `--background=${selection}`,
+    `--background=${wash}`,
   );
 });
 

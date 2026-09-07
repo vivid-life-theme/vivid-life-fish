@@ -8,6 +8,8 @@
 // output (`man fish_config`, THEME FILES section) for the file format this
 // mirrors.
 
+import { selectedWash } from "@vivid-life-theme/design-system/tools/build-tokens";
+
 const label = {
   midnight: "Midnight",
   twilight: "Twilight",
@@ -37,6 +39,16 @@ export function buildTheme(flavor, variant, tokens) {
   const { surface, text, state, semantic, syntax } = f;
   const accent = resolveAccent(tokens, flavor, variant);
   const name = `Vivid Life · ${label[flavor]} · ${variantLabel[variant]}`;
+
+  // The pager's highlighted completion row is a "selected list item", not a
+  // text selection — use the dedicated selected-item wash (accent_mix.selected)
+  // rather than reusing state.selection (which is contrast-verified only for
+  // text selection against `bg`).
+  const selectedWashHex = selectedWash({
+    surface: surface.bg,
+    accent,
+    mixPct: tokens.accent_mix.selected.pct / 100,
+  });
 
   const vars = [
     // shell syntax
@@ -73,7 +85,7 @@ export function buildTheme(flavor, variant, tokens) {
     ["fish_pager_color_background", ""],
     [
       "fish_pager_color_selected_background",
-      `--background=${hex(state.selection)}`,
+      `--background=${hex(selectedWashHex)}`,
     ],
     ["fish_pager_color_selected_completion", hex(text.fg)],
     ["fish_pager_color_selected_description", hex(text.fg_subtle)],

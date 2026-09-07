@@ -31,7 +31,7 @@ fish_pager_color_completion 171717
 fish_pager_color_description 525252
 fish_pager_color_progress 525252
 fish_pager_color_background
-fish_pager_color_selected_background --background=e5e5e5
+fish_pager_color_selected_background --background=d3d8cd
 fish_pager_color_selected_completion 171717
 fish_pager_color_selected_description 525252
 fish_pager_color_selected_prefix 365314
