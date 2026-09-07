@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-09-07
+
+### Changed
+
+- Bumped `@vivid-life-theme/design-system` dependency to 0.9.0.
+- `fish_pager_color_selected_background` now uses the dedicated selected-item wash (`accent_mix.selected`, 18% accent over background) instead of reusing the text-selection color (`state.selection`, 25% accent over background), since the pager's highlighted completion row is a selected list item, not a text selection.
+
 ## [0.1.0] - 2026-09-01
 
 ### Added
