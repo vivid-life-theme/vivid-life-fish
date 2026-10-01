@@ -8,7 +8,7 @@
 // output (`man fish_config`, THEME FILES section) for the file format this
 // mirrors.
 
-import { selectedWash } from "@vivid-life-theme/design-system/tools/build-tokens";
+import { resolveColor } from "@vivid-life-theme/design-system/tools/build-tokens";
 
 const label = {
   midnight: "Midnight",
@@ -25,80 +25,51 @@ const variantLabel = {
   purple: "Purple",
 };
 
+// Fish variables with no shell/prompt role in the design system. Left empty so
+// fish falls back to the primary pager colors.
+const unmappedVars = [
+  "fish_pager_color_background",
+  "fish_pager_color_secondary_background",
+  "fish_pager_color_secondary_completion",
+  "fish_pager_color_secondary_description",
+  "fish_pager_color_secondary_prefix",
+];
+
 function hex(value) {
   return value.startsWith("#") ? value.slice(1) : value;
 }
 
-function resolveAccent(tokens, flavor, variant) {
-  const shade = tokens.accent_shade[flavor][variant];
-  return tokens.palette[variant][shade];
+// One role -> the argument string of a fish color variable, e.g.
+// "ff0000 --bold --background=112233".
+function roleValue(tokens, flavor, variant, role) {
+  const resolve = (target) =>
+    hex(
+      resolveColor(tokens, flavor, variant, target, { surface: "bg_terminal" }),
+    );
+  const parts = [];
+  if (role.color) parts.push(resolve(role.color));
+  for (const style of role.style ?? []) parts.push(`--${style}`);
+  if (role.background) parts.push(`--background=${resolve(role.background)}`);
+  return parts.join(" ");
 }
 
 export function buildTheme(flavor, variant, tokens) {
-  const f = tokens.flavors[flavor];
-  const { surface, text, state, semantic, syntax } = f;
-  const accent = resolveAccent(tokens, flavor, variant);
   const name = `Vivid Life · ${label[flavor]} · ${variantLabel[variant]}`;
+  const bgTerminal = tokens.flavors[flavor].surface.bg_terminal;
 
-  // The pager's highlighted completion row is a "selected list item", not a
-  // text selection — use the dedicated selected-item wash (accent_mix.selected)
-  // rather than reusing state.selection (which is contrast-verified only for
-  // text selection against `bg`).
-  const selectedWashHex = selectedWash({
-    surface: surface.bg,
-    accent,
-    mixPct: tokens.accent_mix.selected.pct / 100,
-  });
-
-  const vars = [
-    // shell syntax
-    ["fish_color_normal", hex(text.fg)],
-    ["fish_color_command", hex(accent)],
-    ["fish_color_keyword", hex(syntax.keyword)],
-    ["fish_color_quote", hex(syntax.string)],
-    ["fish_color_redirection", hex(syntax.punct)],
-    ["fish_color_end", hex(syntax.punct)],
-    ["fish_color_error", hex(semantic.danger)],
-    ["fish_color_param", hex(syntax.parameter)],
-    ["fish_color_option", hex(syntax.attr)],
-    ["fish_color_comment", hex(syntax.comment)],
-    ["fish_color_operator", hex(syntax.keyword)],
-    ["fish_color_escape", hex(syntax.constant)],
-    ["fish_color_autosuggestion", hex(text.fg_subtle)],
-    ["fish_color_cwd", hex(accent)],
-    ["fish_color_cwd_root", hex(semantic.danger)],
-    ["fish_color_user", hex(syntax.function)],
-    ["fish_color_host", hex(text.fg_muted)],
-    ["fish_color_host_remote", hex(semantic.warning)],
-    ["fish_color_status", hex(semantic.danger)],
-    ["fish_color_cancel", `${hex(semantic.danger)} --reverse`],
-    ["fish_color_search_match", `--background=${hex(state.selection)}`],
-    ["fish_color_selection", `--background=${hex(state.selection)}`],
-    ["fish_color_match", `--background=${hex(semantic.info)}`],
-    ["fish_color_history_current", "--bold"],
-    ["fish_color_valid_path", "--underline"],
-    // pager
-    ["fish_pager_color_prefix", hex(accent)],
-    ["fish_pager_color_completion", hex(text.fg)],
-    ["fish_pager_color_description", hex(text.fg_subtle)],
-    ["fish_pager_color_progress", hex(text.fg_subtle)],
-    ["fish_pager_color_background", ""],
-    [
-      "fish_pager_color_selected_background",
-      `--background=${hex(selectedWashHex)}`,
-    ],
-    ["fish_pager_color_selected_completion", hex(text.fg)],
-    ["fish_pager_color_selected_description", hex(text.fg_subtle)],
-    ["fish_pager_color_selected_prefix", hex(accent)],
-    ["fish_pager_color_secondary_background", ""],
-    ["fish_pager_color_secondary_completion", ""],
-    ["fish_pager_color_secondary_description", ""],
-    ["fish_pager_color_secondary_prefix", ""],
-  ];
+  // shell_roles / prompt_roles list the fish variables each role feeds.
+  const vars = [];
+  for (const group of [tokens.shell_roles, tokens.prompt_roles]) {
+    for (const role of Object.values(group.roles)) {
+      const value = roleValue(tokens, flavor, variant, role);
+      for (const key of role.fish) vars.push([key, value]);
+    }
+  }
+  for (const key of unmappedVars) vars.push([key, ""]);
 
   const lines = [
     `# name: '${name}'`,
-    `# preferred_background: ${hex(surface.bg)}`,
+    `# preferred_background: ${hex(bgTerminal)}`,
     "",
     ...vars.map(([key, value]) => (value ? `${key} ${value}` : key)),
   ];

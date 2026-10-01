@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- Bumped `@vivid-life-theme/design-system` dependency to 0.11.0.
+- The theme template now iterates the design system's `shell_roles` / `prompt_roles` instead of mapping syntax slots itself. Visible changes: plain arguments (`fish_color_param`) use `fg`; comments and autosuggestions use the terminal-gated colors; selection, search match and bracket match are `fg` on their overlay (flattened over `bg_terminal`); the selected pager row's prefix is `fg` bold + underlined and its description `fg_muted`; `fish_color_cwd` and `fish_color_cwd_root` are bold; `# preferred_background` is now `bg_terminal`.
+
 ## [0.1.1] - 2026-09-07
 
 ### Changed

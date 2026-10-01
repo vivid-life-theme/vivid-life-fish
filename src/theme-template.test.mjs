@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import tokens from "@vivid-life-theme/design-system";
-import { selectedWash } from "@vivid-life-theme/design-system/tools/build-tokens";
+import { resolveColor } from "@vivid-life-theme/design-system/tools/build-tokens";
 import { buildTheme } from "./theme-template.mjs";
 
 const FLAVORS = ["midnight", "twilight", "dawn", "noon"];
@@ -52,7 +52,7 @@ test("fish_color_command uses the accent resolved from accent_shade", () => {
   const shade = tokens.accent_shade.midnight.purple;
   const expected = tokens.palette.purple[shade].slice(1);
   assert.equal(vars.fish_color_command, expected);
-  assert.equal(vars.fish_color_cwd, expected);
+  assert.equal(vars.fish_color_cwd, `${expected} --bold`);
 });
 
 test("error/status/cwd_root map to semantic.danger", () => {
@@ -61,27 +61,42 @@ test("error/status/cwd_root map to semantic.danger", () => {
   const danger = tokens.flavors.dawn.semantic.danger.slice(1);
   assert.equal(vars.fish_color_error, danger);
   assert.equal(vars.fish_color_status, danger);
-  assert.equal(vars.fish_color_cwd_root, danger);
+  assert.equal(vars.fish_color_cwd_root, `${danger} --bold`);
   assert.equal(vars.fish_color_cancel, `${danger} --reverse`);
 });
 
-test("background-only vars use --background= with no bare color", () => {
-  const content = buildTheme("noon", "green", tokens);
-  const vars = parseVars(content);
-  const selection = tokens.flavors.noon.state.selection.slice(1);
-  assert.equal(vars.fish_color_selection, `--background=${selection}`);
-  assert.equal(vars.fish_color_search_match, `--background=${selection}`);
-
-  const accent = tokens.palette.green[tokens.accent_shade.noon.green];
-  const wash = selectedWash({
-    surface: tokens.flavors.noon.surface.bg,
-    accent,
-    mixPct: tokens.accent_mix.selected.pct / 100,
-  }).slice(1);
+test("selection and pager row use fg on the role's overlay, flattened over bg_terminal", () => {
+  const vars = parseVars(buildTheme("noon", "green", tokens));
+  const on = (target) =>
+    resolveColor(tokens, "noon", "green", target, {
+      surface: "bg_terminal",
+    }).slice(1);
+  const fg = on("fg");
+  assert.equal(
+    vars.fish_color_selection,
+    `${fg} --background=${on("overlay.selection")}`,
+  );
+  assert.equal(
+    vars.fish_color_search_match,
+    `${fg} --background=${on("overlay.find_match")}`,
+  );
   assert.equal(
     vars.fish_pager_color_selected_background,
-    `--background=${wash}`,
+    `--background=${on("overlay.selected")}`,
   );
+  assert.equal(
+    vars.fish_pager_color_selected_prefix,
+    `${fg} --bold --underline --background=${on("overlay.selected")}`,
+  );
+});
+
+test("every fish variable listed by a shell/prompt role is emitted", () => {
+  const vars = parseVars(buildTheme("midnight", "blue", tokens));
+  for (const group of [tokens.shell_roles, tokens.prompt_roles]) {
+    for (const role of Object.values(group.roles)) {
+      for (const key of role.fish) assert.ok(key in vars, `missing ${key}`);
+    }
+  }
 });
 
 test("flag-only vars carry no color", () => {
