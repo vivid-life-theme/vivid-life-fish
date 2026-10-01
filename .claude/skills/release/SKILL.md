@@ -48,7 +48,7 @@ Wait for the user to confirm before proceeding.
 
 ## Bump Version
 
-Edit `package.json`: change `"version"` to the confirmed version string.
+Run `npm version X.Y.Z --no-git-tag-version`. This updates `"version"` in both `package.json` and `package-lock.json` (the lockfile's root version must match; the tag is created later in the Tag step).
 
 ## Update CHANGELOG
 
@@ -73,7 +73,7 @@ The result should look like:
 ## Commit
 
 ```bash
-git add package.json CHANGELOG.md
+git add package.json package-lock.json CHANGELOG.md
 git commit -m "🔖 chore(release): bump to vX.Y.Z
 
 Co-Authored-By: Claude Sonnet 5 <noreply@anthropic.com>"
