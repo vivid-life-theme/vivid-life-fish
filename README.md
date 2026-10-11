@@ -46,7 +46,7 @@ fish_config theme choose vivid-life-midnight-purple
 
 `fish_config theme choose` only lasts for the current session. Goldfish memory, fittingly. This line in `config.fish` is what makes your pick survive a restart (same approach as [Catppuccin for Fish](https://github.com/catppuccin/fish#usage)).
 
-Run `fish_config theme choose` with no arguments for the interactive picker to try variants before committing to one, or `fish_config theme show` to preview every installed theme in the terminal.
+To shop around first, run `fish_config theme show` to preview every installed theme in the terminal, or plain `fish_config` to open the browser-based config, where the Colors tab lets you click through themes before committing to one.
 
 Default: **Midnight · Purple** (`vivid-life-midnight-purple`), matching the design system's overall default.
 
