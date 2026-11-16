@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.2.1] - 2026-11-16
+
 ### Changed
 
 - Design-system dependency bumped to 0.14.2 (themes regenerate identically to 0.14.1 output). Earlier 0.14.1 changes: themes regenerated. The terminal background every color is checked against is now the flavor's editor background (`#171717` / `#404040` / `#d4d4d4` / `#f5f5f5`), so the selection, search match, match and selected-completion backgrounds change on Midnight, Twilight and Noon, and the `preferred_background` comment follows. Midnight and Twilight selections are now an accent tint. Dawn is unchanged.
