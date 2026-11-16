@@ -8,10 +8,10 @@ In time-of-day order. Fish doesn't paint the terminal background (your terminal 
 
 | Flavor       | Type  | Terminal background |
 | ------------ | ----- | ------------------- |
-| **Midnight** | dark  | `#0a0a0a`           |
-| **Twilight** | dark  | `#333333`           |
+| **Midnight** | dark  | `#171717`           |
+| **Twilight** | dark  | `#404040`           |
 | **Dawn**     | light | `#d4d4d4`           |
-| **Noon**     | light | `#ffffff`           |
+| **Noon**     | light | `#f5f5f5`           |
 
 For the contrast numbers to hold, pair it with a matching terminal port such as [Windows Terminal](https://github.com/vivid-life-theme/vivid-life-windows-terminal) or [Xfce Terminal](https://github.com/vivid-life-theme/vivid-life-xfce4-terminal), or set your terminal's background to the value above.
 
