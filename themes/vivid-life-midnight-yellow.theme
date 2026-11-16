@@ -1,5 +1,5 @@
 # name: 'Vivid Life · Midnight · Yellow'
-# preferred_background: 0a0a0a
+# preferred_background: 171717
 
 fish_color_normal f5f5f5
 fish_color_command eab308
@@ -17,17 +17,17 @@ fish_color_error fca5a5
 fish_color_cancel fca5a5 --reverse
 fish_color_valid_path --underline
 fish_color_history_current --bold
-fish_color_selection f5f5f5 --background=3e250e
-fish_color_search_match f5f5f5 --background=3e250e
-fish_color_match f5f5f5 --background=102c37
+fish_color_selection f5f5f5 --background=4c3e13
+fish_color_search_match f5f5f5 --background=442b15
+fish_color_match f5f5f5 --background=17333d
 fish_pager_color_prefix eab308
 fish_pager_color_completion f5f5f5
 fish_pager_color_description 999999
 fish_pager_color_progress 999999
-fish_pager_color_selected_background --background=32280a
-fish_pager_color_selected_prefix f5f5f5 --bold --underline --background=32280a
-fish_pager_color_selected_completion f5f5f5 --background=32280a
-fish_pager_color_selected_description d4d4d4 --background=32280a
+fish_pager_color_selected_background --background=3d3314
+fish_pager_color_selected_prefix f5f5f5 --bold --underline --background=3d3314
+fish_pager_color_selected_completion f5f5f5 --background=3d3314
+fish_pager_color_selected_description d4d4d4 --background=3d3314
 fish_color_cwd eab308 --bold
 fish_color_cwd_root fca5a5 --bold
 fish_color_user 93c5fd

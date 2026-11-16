@@ -1,5 +1,5 @@
 # name: 'Vivid Life · Twilight · Yellow'
-# preferred_background: 333333
+# preferred_background: 404040
 
 fish_color_normal f5f5f5
 fish_color_command eab308
@@ -17,17 +17,17 @@ fish_color_error fee2e2
 fish_color_cancel fee2e2 --reverse
 fish_color_valid_path --underline
 fish_color_history_current --bold
-fish_color_selection f5f5f5 --background=623c1a
-fish_color_search_match f5f5f5 --background=623c1a
-fish_color_match f5f5f5 --background=1a4a5c
+fish_color_selection f5f5f5 --background=6b5d32
+fish_color_search_match f5f5f5 --background=653f1e
+fish_color_match f5f5f5 --background=1c4c5e
 fish_pager_color_prefix eab308
 fish_pager_color_completion f5f5f5
 fish_pager_color_description b8b8b8
 fish_pager_color_progress b8b8b8
-fish_pager_color_selected_background --background=544a2b
-fish_pager_color_selected_prefix f5f5f5 --bold --underline --background=544a2b
-fish_pager_color_selected_completion f5f5f5 --background=544a2b
-fish_pager_color_selected_description d4d4d4 --background=544a2b
+fish_pager_color_selected_background --background=5f5536
+fish_pager_color_selected_prefix f5f5f5 --bold --underline --background=5f5536
+fish_pager_color_selected_completion f5f5f5 --background=5f5536
+fish_pager_color_selected_description d4d4d4 --background=5f5536
 fish_color_cwd eab308 --bold
 fish_color_cwd_root fee2e2 --bold
 fish_color_user 93c5fd
